@@ -10,7 +10,9 @@ You might be interested to go through this tutorial ([React apollo - Getting sta
 
 1. Copy `.env.example` into a file called `.env.local`, and replace `xxx` with your Github's personal access token. You can generate one from the [developer settings](https://github.com/settings/tokens).
 
-2. Then, hit `npm start`
+2. Run `npm install` to install all the project dependencies
+
+3. Then, hit `npm start`
 
 ## Available Scripts
 
