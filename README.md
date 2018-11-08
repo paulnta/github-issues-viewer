@@ -1,4 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React apollo starter
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and provide an example of how to add [react-apollo](https://www.apollographql.com/docs/react/) and fetch data from Github's [GraphQL API](https://developer.github.com/v4/).
+
+Check [this commit](https://github.com/heig-vd-tweb/react-apollo-starter/commit/728251583d5ce06840939b33aa1c3f1d29b000d2?diff=split) to see what changes were needed to make this work !
+
+You might be interested to go through this tutorial ([React apollo - Getting started](https://www.howtographql.com/react-apollo/1-getting-started/)) for a step-by-step guide.
+
+## Running the app
+
+1. Copy `.env.example` into a file called `.env.local`, and replace `xxx` with your Github's personal access token. You can generate one from the [developer settings](https://github.com/settings/tokens).
+
+2. Then, hit `npm start`
 
 ## Available Scripts
 
@@ -42,3 +54,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+To learn Graphql, check out the [GraphQL documentation](https://graphql.org/)
+
+To learn Apollo, check out the [Apollo documentation](https://apollographql.com/)
