@@ -1,34 +1,48 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import Typography from '@material-ui/core/Typography';
-import { createSkeletonElement } from '@trainline/react-skeletor';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import { Span } from './Skeleton';
 import Code from './Code';
 import CodeInline from './CodeInline';
 
-const Span = createSkeletonElement('span');
+const styles = theme => ({
+  root: {
+    ...theme.typography.body1,
+    color: theme.palette.text.primary,
+    '& p': {
+      marginBottom: theme.spacing.unit * 2,
+    },
+    '& img': {
+      width: '100%',
+      height: 'auto',
+    }
+  },
+});
 
 const renderers = {
   code: Code,
   inlineCode: CodeInline,
-  image: ({ src, alt }) => (
-    <img
-      src={src}
-      alt={alt}
-      style={{ width: '100%', height: 'auto' }}
-    />
-  ),
   paragraph: ({ children, style }) => (
-    <Typography variant="body1" style={{ marginBottom: 16 }}>
+    <Typography variant="body1">
       <Span>{children}</Span>
     </Typography>
   ),
 };
 
-const Markdown = (props) => (
+const Markdown = ({ classes, className, ...props }) => (
   <ReactMarkdown
-    {...props}
+    className={cx(classes.root, className)}
     renderers={renderers}
+    {...props}
   />
 );
 
-export default Markdown;
+Markdown.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  className: PropTypes.string,
+};
+
+export default withStyles(styles)(Markdown);
