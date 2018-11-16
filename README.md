@@ -1,4 +1,4 @@
-# React apollo starter
+# Github issues viewer
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and provide an example of how to add [react-apollo](https://www.apollographql.com/docs/react/) and fetch data from Github's [GraphQL API](https://developer.github.com/v4/).
 
