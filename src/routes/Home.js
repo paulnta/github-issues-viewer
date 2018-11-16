@@ -8,19 +8,11 @@ import Content from '../components/LayoutContent';
 class Home extends Component {
   constructor(props) {
     super(props);
+    // TODO: make this dynamic
     this.state = {
       owner: 'facebook',
       name: 'react',
     };
-
-    this.nameField = React.createRef();
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.setState({
-      name: this.nameField.current.value,
-    });
   }
 
   render() {
