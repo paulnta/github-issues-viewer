@@ -47,7 +47,6 @@ class IssueList extends Component {
         query={ISSUES_QUERY}
         skip={!owner || !name}
         variables={{ owner, name }}
-        errorPolicy="none"
       >
         {({ loading, error, data }) => {
           console.log({ error, data });
