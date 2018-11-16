@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and provide an example of how to add [react-apollo](https://www.apollographql.com/docs/react/) and fetch data from Github's [GraphQL API](https://developer.github.com/v4/).
 
+See the application running live at https://github-issues-demo.firebaseapp.com and the demo of the storybook at https://paulnta.github.io/github-issues-viewer
+
 Check [this commit](https://github.com/heig-vd-tweb/react-apollo-starter/commit/728251583d5ce06840939b33aa1c3f1d29b000d2?diff=split) to see what changes were needed to make this work !
 
 You might be interested to go through this tutorial ([React apollo - Getting started](https://www.howtographql.com/react-apollo/1-getting-started/)) for a step-by-step guide.
