@@ -17,7 +17,6 @@ import IssueStateChip from './IssueStateChip';
 
 const styles = theme => ({
   root: {
-    overflow: 'hidden',
     position: 'relative',
     paddingRight: 48,
   },
