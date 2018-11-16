@@ -9,6 +9,7 @@
     "apollo-boost": "^0.1.20",
     "classnames": "^2.2.6",
     "dayjs": "^1.7.7",
+    "deepmerge": "^2.2.1",
     "graphql": "^14.0.2",
     "highlight.js": "^9.13.1",
     "prop-types": "^15.6.2",
@@ -28,7 +29,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "browserslist": [
     ">0.2%",
@@ -42,6 +44,7 @@
     "@storybook/addon-links": "^4.0.4",
     "@storybook/addons": "^4.0.4",
     "@storybook/react": "^4.0.4",
+    "@storybook/storybook-deployer": "^2.3.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-import": "^1.11.0"
   }
