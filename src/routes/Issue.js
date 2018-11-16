@@ -3,6 +3,9 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import { Link } from 'react-router-dom';
 
 import Header from '../components/LayoutHeader';
 import Content from '../components/LayoutContent';
@@ -11,8 +14,12 @@ import IssueComment from '../components/IssueComment';
 import IssueCommentList from '../components/IssueCommentList';
 
 const styles = {
+  breadcrumb: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   issueHeader: {
-    marginTop: 36,
+    marginTop: 24,
   },
 };
 
@@ -58,7 +65,14 @@ class Issue extends Component {
             return (
               <>
                 <Header>
-                  <Typography variant="h6">facebook / react </Typography>
+                  <div className={classes.breadcrumb}>
+                    <Link to="/">
+                      <IconButton>
+                        <ArrowBack color="action" />
+                      </IconButton>
+                    </Link>
+                    <Typography variant="h6">facebook / react </Typography>
+                  </div>
                   <IssueHeader
                     className={classes.issueHeader}
                     loading={loading}
