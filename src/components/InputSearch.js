@@ -20,7 +20,11 @@ const InputSearch = ({ classes, ...props }) => (
   <InputBase
     endAdornment={
       <InputAdornment position="end">
-        <IconButton tabIndex={-1} className={classes.searchButton}>
+        <IconButton
+          disabled={props.disabled}
+          tabIndex={-1}
+          className={classes.searchButton}
+        >
           <Search />
         </IconButton>
       </InputAdornment>
