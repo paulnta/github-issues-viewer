@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import ThemeToggle from './ThemeToggle';
 import InputSearch from './InputSearch';
+import GithubIcon from '../svgIcons/Github';
 
 const styles = theme => {
   const appBarBackground = theme.palette.background.contrast;
@@ -42,6 +43,7 @@ const styles = theme => {
       top: '50%',
       left: 16,
       transform: 'translateY(-50%)',
+      color: theme.palette.text.primary,
     },
     searchInput: {
       transition: theme.transitions.create('width'),
@@ -62,10 +64,11 @@ const Layout = ({ classes, children }) => (
       <Toolbar className={classes.toolbar}>
         <div className={cx(classes.toolbarContent, classes.centered)}>
           <Link to="/">
-            <img src="/logo.svg" alt="logo" className={classes.logo} />
+            <GithubIcon className={classes.logo} />
           </Link>
           <div className={classes.grow} />
           <InputSearch
+            disabled
             fullWidth={false}
             placeholder="Search for repo"
             inputProps={{

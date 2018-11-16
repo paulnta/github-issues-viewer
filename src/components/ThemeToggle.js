@@ -1,8 +1,8 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
-import LightBulbFull from '../icons/LightBulbFull';
-import LightBulbOutline from '../icons/LightBulbOutline';
+import LightBulbFull from '../svgIcons/LightBulbFull';
+import LightBulbOutline from '../svgIcons/LightBulbOutline';
 import { ThemeContext } from './Theme';
 
 const ThemeToggle = () => (

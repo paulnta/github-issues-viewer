@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import ChipBase from '@material-ui/core/Chip';
 
-import Info from '../icons/Info';
+import Info from '../svgIcons/Info';
 
 const styles = theme => ({
   root: {
