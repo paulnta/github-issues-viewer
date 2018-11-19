@@ -20,6 +20,7 @@ const styles = theme => {
       body: {
         margin: 0, // Remove the margin in all browsers.
         backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
         '@media print': {
           // Save printer ink.
           backgroundColor: theme.palette.common.white,
