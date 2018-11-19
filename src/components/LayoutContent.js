@@ -20,7 +20,7 @@ const LayoutContent = ({ classes, className, children }) => (
 
 LayoutContent.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
-  className: PropTypes.objectOf(PropTypes.string),
+  className: PropTypes.string,
   children: PropTypes.node,
 };
 

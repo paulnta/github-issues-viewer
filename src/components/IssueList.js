@@ -59,7 +59,7 @@ class IssueList extends Component {
             <div>
               {repository.issues.edges.map(({ node: issue }) => {
                 return (
-                  <Link key={issue.id} to={`${owner}/${name}/issues/${issue.number}`}>
+                  <Link key={issue.id} to={`/${owner}/${name}/issues/${issue.number}`}>
                     <IssueListItem
                       number={issue.number}
                       title={issue.title}

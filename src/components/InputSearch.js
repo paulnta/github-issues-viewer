@@ -24,6 +24,7 @@ const InputSearch = ({ classes, ...props }) => (
           disabled={props.disabled}
           tabIndex={-1}
           className={classes.searchButton}
+          type="submit"
         >
           <Search />
         </IconButton>

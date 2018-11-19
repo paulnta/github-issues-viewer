@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import cx from 'classnames';
-import { Link } from 'react-router-dom';
+import compose from 'recompose/compose';
+import { Link, withRouter } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+
 import ThemeToggle from './ThemeToggle';
 import InputSearch from './InputSearch';
 import GithubIcon from '../svgIcons/Github';
@@ -58,34 +60,60 @@ const styles = theme => {
   };
 };
 
-const Layout = ({ classes, children }) => (
-  <div>
-    <AppBar elevation={0} className={classes.appBar} position="static">
-      <Toolbar className={classes.toolbar}>
-        <div className={cx(classes.toolbarContent, classes.centered)}>
-          <Link to="/">
-            <GithubIcon className={classes.logo} />
-          </Link>
-          <div className={classes.grow} />
-          <InputSearch
-            disabled
-            fullWidth={false}
-            placeholder="Search for repo"
-            inputProps={{
-              className: classes.searchInput,
-            }}
-          />
-          <ThemeToggle />
-        </div>
-      </Toolbar>
-    </AppBar>
-    {children}
-  </div>
-);
 
-Layout.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string),
-  children: PropTypes.node,
-};
+class Layout extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string),
+    children: PropTypes.node,
+    history: PropTypes.object.isRequired,
+  };
 
-export default withStyles(styles)(Layout);
+  constructor(props) {
+    super(props);
+    this.input = React.createRef();
+  }
+
+  onSubmitSearch = (e) => {
+    e.preventDefault();
+    const { history } = this.props;
+    const q = this.input.current.value;
+    if (q) {
+      history.push(`/search?q=${q}`);
+    }
+  }
+
+  render() {
+    const { classes, children } = this.props;
+    return (
+      <div>
+        <AppBar elevation={0} className={classes.appBar} position="static">
+          <Toolbar className={classes.toolbar}>
+            <div className={cx(classes.toolbarContent, classes.centered)}>
+              <Link to="/">
+                <GithubIcon className={classes.logo} />
+              </Link>
+              <div className={classes.grow} />
+              <form onSubmit={this.onSubmitSearch}>
+                <InputSearch
+                  fullWidth={false}
+                  placeholder="Search for repo"
+                  inputProps={{
+                    ref: this.input,
+                    className: classes.searchInput,
+                  }}
+                />
+              </form>
+              <ThemeToggle />
+            </div>
+          </Toolbar>
+        </AppBar>
+        {children}
+      </div>
+    );
+  }
+}
+
+export default compose(
+  withRouter,
+  withStyles(styles),
+)(Layout);
