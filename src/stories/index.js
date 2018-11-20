@@ -11,6 +11,7 @@ import InputBase from '../components/InputBase';
 import InputSearch from '../components/InputSearch';
 import IssueHeader from '../components/IssueHeader';
 import Row from './Row';
+import RepoListItem from '../components/RepoListItem';
 
 storiesOf('Components', module)
   .add('Time', () => (
@@ -53,9 +54,33 @@ storiesOf('Components', module)
       </Row>
     </Sheet>
   ))
-  .add('ListItem', () => (
+  .add('Repos', () => (
     <>
-      <Sheet title="List item">
+      <Sheet title="Repo list item">
+        <RepoListItem
+          title="facebook/react"
+          description="A declarative, efficient, and flexible JavaScript library for building user interfaces."
+          starCount={116000}
+        />
+        <RepoListItem
+          title="angular/angular"
+          description="One framework. Mobile & desktop."
+          starCount={42800}
+        />
+        <RepoListItem
+          title="vuejs/vue"
+          description="🖖 A progressive, incrementally-adoptable JavaScript framework for building UI on the web."
+          starCount={120000}
+        />
+      </Sheet>
+      <Sheet title="Repo list item (pending)">
+        <RepoListItem loading />
+      </Sheet>
+    </>
+  ))
+  .add('Issues', () => (
+    <>
+      <Sheet title="Issue list item">
         <IssueListItem
           title="Provide more ways to bail out inside Hooks"
           number={14110}
@@ -81,7 +106,7 @@ storiesOf('Components', module)
           commentCount={2}
         />
       </Sheet>
-      <Sheet title="List item (pending)">
+      <Sheet title="Issue list item (pending)">
         <IssueListItem loading />
       </Sheet>
     </>
