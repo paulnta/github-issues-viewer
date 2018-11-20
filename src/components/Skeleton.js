@@ -7,7 +7,7 @@ const defaultStyling = 'skeleton-pending';
 export const Span = createSkeletonElement('span');
 export const Avatar = createSkeletonElement(AvatarBase);
 
-export const placeholder = length => 'x'.repeat(length);
+export const placeholder = length => 'x '.repeat(length / 2);
 
 export const withSkeletonProvider = (dummyData, predicate = defaultPredicate, styling = defaultStyling) => {
   return createSkeletonProvider(dummyData, predicate, styling);
