@@ -4,8 +4,10 @@ import compose from 'recompose/compose';
 import cx from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import CommentIcon from '@material-ui/icons/ModeCommentOutlined';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import { IssueState } from "../constants";
 import TimeAgo from "./TimeAgo";
@@ -13,63 +15,52 @@ import IssueStateIcon from "./IssueStateIcon";
 import { Span, withSkeletonProvider, withSkeleton, placeholder } from "./Skeleton";
 
 const styles = theme => ({
-  root: {
-    padding: '8px 64px 8px 34px',
-    position: 'relative',
-    display: 'block',
-    textAlign: 'left',
-    borderRadius: 2,
-    '&:hover': {
-      background: theme.palette.action.hover,
-    },
-    '&.loading': {
-      pointerEvents: 'none',
-    },
-  },
-  issueState: {
-    position: 'absolute',
-    top: 15,
-    left: 10,
-  },
-  issueComments: {
-    position: 'absolute',
-    top: 12,
-    right: 16,
-    display: 'flex',
-    alignItems: 'center',
-  },
   commentIcon: {
     height: 18,
     width: 18,
     color: theme.palette.text.secondary,
     marginRight: theme.spacing.unit / 2,
   },
-  primaryText: {
+  root: {
+    '&.loading': {
+      // remove mouse interactions when loading
+      pointerEvents: 'none',
+    },
+  },
+  title: {
     fontWeight: 500,
-  }
+  },
 });
 
+// skeleton icons
 const Comment = withSkeleton(CommentIcon);
+const StateIcon = withSkeleton(IssueStateIcon);
 
-const IssueListItem = ({ classes, title, number, createdAt, state, author, commentCount, loading, tabIndex }) => (
-  <ButtonBase className={cx(classes.root, { loading })} component="div" tabIndex={tabIndex}>
-    <Typography variant="subtitle1" noWrap className={classes.primaryText}>
-      <Span>{title}</Span>
-    </Typography>
-    <Typography variant="caption" noWrap color="textSecondary">
-      <Span>#{number} opened <TimeAgo date={createdAt} /> by {author}</Span>
-    </Typography>
-    <IssueStateIcon
-      className={cx(classes.issueState, { 'skeleton-pending': loading })}
-      state={state}
+const IssueListItem = ({ classes, title, number, createdAt, state, author, commentCount, loading, ...other }) => (
+  <ListItem className={cx(classes.root, { loading })} button {...other}>
+    <ListItemIcon>
+      <StateIcon state={state} />
+    </ListItemIcon>
+    <ListItemText
+      disableTypography
+      primary={
+        <Typography variant="subtitle1" noWrap className={classes.title}>
+          <Span>{title}</Span>
+        </Typography>
+      }
+      secondary={
+        <Typography variant="caption" noWrap color="textSecondary">
+          <Span>#{number} opened <TimeAgo date={createdAt} /> by {author}</Span>
+        </Typography>
+      }
     />
     {(loading || commentCount > 0) && (
-      <div className={classes.issueComments}>
+      <ListItemIcon>
         <Comment className={classes.commentIcon} />
         <Typography variant="caption">{commentCount}</Typography>
-      </div>
+      </ListItemIcon>
     )}
-  </ButtonBase>
+  </ListItem>
 );
 
 IssueListItem.propTypes = {
@@ -80,6 +71,7 @@ IssueListItem.propTypes = {
   createdAt: PropTypes.string,
   commentCount: PropTypes.number,
   tabIndex: PropTypes.number,
+  loading: PropTypes.bool,
 };
 
 export default compose(

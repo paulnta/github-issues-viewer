@@ -14,6 +14,7 @@ import { withSkeleton, withSkeletonProvider, Span, placeholder } from './Skeleto
 const styles = theme => ({
   root: {
     '&.loading': {
+      // remove mouse interactions when loading
       pointerEvents: 'none',
     },
   },
@@ -28,6 +29,7 @@ const styles = theme => ({
   }
 });
 
+// skeleton icon
 const StarIcon = withSkeleton(StarBorder);
 
 const formatStarCount = (value) => {
@@ -51,8 +53,8 @@ const BaseListItem = ({ classes, className, title, description, starCount, loadi
       }
     />
     <ListItemIcon>
-      <StarIcon className={classes.starIcon} />
-      <Typography className={classes.starCount}>
+      <StarIcon color="action" className={classes.starIcon} />
+      <Typography color="textSecondary" className={classes.starCount}>
         {formatStarCount(starCount)}
       </Typography>
     </ListItemIcon>
@@ -62,10 +64,10 @@ const BaseListItem = ({ classes, className, title, description, starCount, loadi
 BaseListItem.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   className: PropTypes.string,
-  loading: PropTypes.bool,
   title: PropTypes.string,
   description: PropTypes.string,
   startCount: PropTypes.number,
+  loading: PropTypes.bool,
 };
 
 export default compose(

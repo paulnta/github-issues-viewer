@@ -8,8 +8,8 @@ import Info from '../svgIcons/Info';
 
 const styles = theme => ({
   icon: {
-    height: 14,
-    width: 14,
+    height: 18,
+    width: 18,
     color: '#01D48A',
     '&.closed': {
       color: theme.palette.error.main,
