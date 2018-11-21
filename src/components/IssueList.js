@@ -25,6 +25,7 @@ query RepoInfos($owner: String!, $name: String!) {
 }
 `;
 
+// TODO: add empty state
 const LoadingState = () => (
   <>
     <IssueListItem loading />
@@ -63,7 +64,7 @@ class IssueList extends Component {
                     <IssueListItem
                       number={issue.number}
                       title={issue.title}
-                      author={issue.author.login}
+                      author={issue.author ? issue.author.login : undefined}
                       createdAt={issue.createdAt}
                       commentCount={issue.comments.totalCount}
                       tabIndex={-1}

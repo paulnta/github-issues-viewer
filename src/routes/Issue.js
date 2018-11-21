@@ -71,7 +71,7 @@ class Issue extends Component {
                         <ArrowBack color="action" />
                       </IconButton>
                     </Link>
-                    <Typography variant="h6">facebook / react </Typography>
+                    <Typography variant="h6">{owner} / {name} </Typography>
                   </div>
                   <IssueHeader
                     className={classes.issueHeader}
@@ -80,7 +80,7 @@ class Issue extends Component {
                     number={issue.number}
                     createdAt={issue.createdAt}
                     state={issue.state}
-                    author={author.login}
+                    author={author ? author.login : null}
                     commentsCount={comments.totalCount}
                     url={issue.url}
                   />

@@ -56,8 +56,10 @@ const IssueListItem = ({ classes, title, number, createdAt, state, author, comme
     />
     {(loading || commentCount > 0) && (
       <ListItemIcon>
-        <Comment className={classes.commentIcon} />
-        <Typography variant="caption">{commentCount}</Typography>
+        <>
+          <Comment className={classes.commentIcon} />
+          <Typography variant="caption">{commentCount}</Typography>
+        </>
       </ListItemIcon>
     )}
   </ListItem>
@@ -72,6 +74,10 @@ IssueListItem.propTypes = {
   commentCount: PropTypes.number,
   tabIndex: PropTypes.number,
   loading: PropTypes.bool,
+};
+
+IssueListItem.defaultProps = {
+  author: 'unknown'
 };
 
 export default compose(
