@@ -7,12 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import OpenIcon from '@material-ui/icons/OpenInNew';
 import Tooltip from '@material-ui/core/Tooltip';
-import { createSkeletonElement, createSkeletonProvider } from '@trainline/react-skeletor';
+import { withSkeletonProvider, Span } from './Skeleton';
 
-import { IssueState } from '../constants';
 import TimeAgo from './TimeAgo';
+import { IssueState } from '../constants';
 import IssueStateChip from './IssueStateChip';
-
 
 
 const styles = theme => ({
@@ -32,8 +31,6 @@ const styles = theme => ({
     right: 0,
   },
 });
-
-const Span = createSkeletonElement('span');
 
 const IssueHeader = ({ classes, className, children, title, author, commentsCount, number, createdAt, state, url }) => {
   const timeAgo = createdAt && <TimeAgo date={createdAt} />;
@@ -85,17 +82,13 @@ IssueHeader.propTypes = {
 };
 
 export default compose(
-  createSkeletonProvider(
-    {
-      title: 'xxx '.repeat(15),
-      author: 'xxx '.repeat(3),
-      number: null,
-      url: null,
-      state: null,
-      createdAt: null,
-    },
-    ({ loading }) => loading,
-    'skeleton-pending',
-  ),
+  withSkeletonProvider({
+    title: 'xxx '.repeat(15),
+    author: 'xxx '.repeat(3),
+    number: null,
+    url: null,
+    state: null,
+    createdAt: null,
+  }),
   withStyles(styles),
 )(IssueHeader);
