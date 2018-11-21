@@ -77,9 +77,7 @@ class Layout extends React.Component {
     e.preventDefault();
     const { history } = this.props;
     const q = this.input.current.value;
-    if (q) {
-      history.push(`/search?q=${q}`);
-    }
+    history.push(`/search?q=${q}`);
   }
 
   render() {
