@@ -37,8 +37,9 @@ const styles = theme => {
   };
 };
 
-const IssueComment = ({ classes, body, author, createdAt }) => {
+const IssueComment = ({ classes, body: bodyProps, author, createdAt }) => {
   const { avatarUrl, login } = author || {};
+  const body = bodyProps || '*No description provided*';
 
   return (
     <div className={classes.root}>
