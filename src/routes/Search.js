@@ -6,25 +6,34 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
-import Header from '../components/LayoutHeader';
 import Content from '../components/LayoutContent';
+import RepoListItem from '../components/RepoListItem';
 
 const styles = theme => ({
   root: {},
+  title: {
+    ...theme.mixins.gutters(),
+  }
 });
 
 const SEARCH_REPO = gql`
   query SearchRepo($query: String!) {
     search(query: $query, type: REPOSITORY, first: 10) {
-      repositoryCount
       edges {
         node {
           ...on Repository {
             id
             name
+            nameWithOwner
             owner { login }
             description
+            stargazers {
+              totalCount
+            }
           }
         }
       }
@@ -32,34 +41,54 @@ const SEARCH_REPO = gql`
   }
 `;
 
+const DEFAULT_QUERY = 'stars:>1000';
+
+const LoadingState = () => (
+  <>
+    <RepoListItem loading />
+    <RepoListItem loading />
+    <RepoListItem loading />
+    <RepoListItem loading />
+  </>
+);
+
 const Search = ({ classes, children, location }) => {
   const params = queryString.parse(location.search);
   return (
-    <Query query={SEARCH_REPO} variables={{ query: params.q || '' }}>
-      {({ data, loading, error }) => {
-        if (loading) return 'Loading...';
-        if (error) return 'error...';
-        const { edges, repositoryCount } = data.search;
-        return (
-          <Content className={classes.root}>
-            <h1>{repositoryCount} results</h1>
-            {edges.map(({ node: repo }) => {
-              return (
-                <Link
-                  key={repo.id}
-                  to={`/${repo.owner.login}/${repo.name}`}
-                >
-                  <div >
-                    <p>{repo.owner.login}/{repo.name}</p>
-                    <p>{repo.description}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </Content>
-        );
-      }}
-    </Query>
+    <>
+      <Content className={classes.root}>
+        <Typography className={classes.title} variant="title" gutterBottom>
+          Search Repositories
+        </Typography>
+        <Query query={SEARCH_REPO} variables={{ query: params.q || DEFAULT_QUERY }}>
+          {({ data, loading, error }) => {
+            if (loading) return <LoadingState />;
+            if (error) return 'error...';
+            const { edges } = data.search;
+            return (
+              <List>
+                {
+                  edges.map(({ node: repo }) => {
+                    return (
+                      <Link
+                        key={repo.id}
+                        to={`/${repo.owner.login}/${repo.name}`}
+                      >
+                        <RepoListItem
+                          title={repo.nameWithOwner}
+                          description={repo.description}
+                          starCount={repo.stargazers.totalCount}
+                        />
+                      </Link>
+                    );
+                  })
+                }
+              </List>
+            );
+          }}
+        </Query>
+      </Content>
+    </>
   );
 };
 

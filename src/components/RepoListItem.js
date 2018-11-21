@@ -22,10 +22,12 @@ const styles = theme => ({
     fontWeight: 500,
   },
   starIcon: {
+    height: 18,
+    width: 18,
     marginRight: 4,
   },
   starCount: {
-    lineHeight: '24px',
+    lineHeight: '18px',
   }
 });
 
@@ -66,7 +68,7 @@ BaseListItem.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
-  startCount: PropTypes.number,
+  starCount: PropTypes.number,
   loading: PropTypes.bool,
 };
 
