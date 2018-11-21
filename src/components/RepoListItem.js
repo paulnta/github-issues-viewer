@@ -55,10 +55,12 @@ const BaseListItem = ({ classes, className, title, description, starCount, loadi
       }
     />
     <ListItemIcon>
-      <StarIcon color="action" className={classes.starIcon} />
-      <Typography color="textSecondary" className={classes.starCount}>
-        {formatStarCount(starCount)}
-      </Typography>
+      <>
+        <StarIcon color="action" className={classes.starIcon} />
+        <Typography color="textSecondary" className={classes.starCount}>
+          {formatStarCount(starCount)}
+        </Typography>
+      </>
     </ListItemIcon>
   </ListItem>
 );
