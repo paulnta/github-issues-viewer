@@ -1,32 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
+import List from '@material-ui/core/List';
 
 import IssueListItem from './IssueListItem';
+import { IssueState } from '../constants';
+import IssuesLoader from './IssuesLoader';
+import Pagination from './Pagination';
 
-const ISSUES_QUERY = gql`
-query RepoInfos($owner: String!, $name: String!) {
-  repository(owner: $owner, name: $name) {
-    issues(first: 30, orderBy: { field: UPDATED_AT, direction: DESC }) {
-      edges {
-        node {
-          id
-          number
-          title
-          author { login }
-          createdAt
-          comments { totalCount }
-        }
-      }
-    }
-  }
-}
-`;
 
 // TODO: add empty state
-const LoadingState = () => (
+const Loading = () => (
   <>
     <IssueListItem loading />
     <IssueListItem loading />
@@ -37,29 +21,29 @@ const LoadingState = () => (
 
 class IssueList extends Component {
   static propTypes = {
-    owner: PropTypes.string,
-    name: PropTypes.string,
+    owner: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    state: PropTypes.string,
   };
 
-  render() {
-    const { owner, name } = this.props;
-    return (
-      <Query
-        query={ISSUES_QUERY}
-        skip={!owner || !name}
-        variables={{ owner, name }}
-      >
-        {({ loading, error, data }) => {
-          console.log({ error, data });
-          if (loading) return <LoadingState />;
-          else if (error) return 'Error...';
-          else if (!data) return null;
+  static defaultProps = {
+    state: IssueState.OPEN,
+  }
 
-          const { repository } = data;
+  render() {
+    const { owner, name, state } = this.props;
+    return (
+      <IssuesLoader
+        owner={owner}
+        name={name}
+        state={state}
+      >
+        {({ loading, issues, hasNextPage, onLoadMore }) => {
+          if (loading) return <Loading />;
           return (
             <div>
-              {repository.issues.edges.map(({ node: issue }) => {
-                return (
+              <List>
+                {issues.map(issue => (
                   <Link key={issue.id} to={`/${owner}/${name}/issues/${issue.number}`}>
                     <IssueListItem
                       number={issue.number}
@@ -67,15 +51,20 @@ class IssueList extends Component {
                       author={issue.author ? issue.author.login : undefined}
                       createdAt={issue.createdAt}
                       commentCount={issue.comments.totalCount}
+                      state={issue.state}
                       tabIndex={-1}
                     />
                   </Link>
-                );
-              })}
+                ))}
+              </List>
+              <Pagination
+                onLoadMore={onLoadMore}
+                hasNextPage={hasNextPage}
+              />
             </div>
           );
         }}
-      </Query>
+      </IssuesLoader>
     );
   }
 }
