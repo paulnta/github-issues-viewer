@@ -8,7 +8,6 @@ import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
 
 import Content from '../components/LayoutContent';
 import RepoListItem from '../components/RepoListItem';
@@ -57,7 +56,7 @@ const Search = ({ classes, children, location }) => {
   return (
     <>
       <Content className={classes.root}>
-        <Typography className={classes.title} variant="title" gutterBottom>
+        <Typography className={classes.title} variant="h6" gutterBottom>
           Search Repositories
         </Typography>
         <Query query={SEARCH_REPO} variables={{ query: params.q || DEFAULT_QUERY }}>

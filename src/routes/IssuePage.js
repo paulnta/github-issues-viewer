@@ -20,6 +20,7 @@ const styles = {
   },
   issueHeader: {
     marginTop: 24,
+    paddingLeft: 62,
   },
 };
 
@@ -66,7 +67,7 @@ class Issue extends Component {
               <>
                 <Header>
                   <div className={classes.breadcrumb}>
-                    <Link to="/">
+                    <Link to={`/${owner}/${name}`}>
                       <IconButton>
                         <ArrowBack color="action" />
                       </IconButton>
