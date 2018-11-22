@@ -41,6 +41,11 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "storybook-deployer": {
+    "gitUsername": "paulnta",
+    "gitEmail": "paul.ntawuruhunga@heig-vd.ch",
+    "commitMessage": "Deploy Storybook to GitHub Pages"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.5",
     "@storybook/addon-actions": "^4.0.4",
