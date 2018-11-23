@@ -11,4 +11,4 @@ module.exports = {
       localSchemaFile: "github-schema.json"
     }
   }
-}
+};
