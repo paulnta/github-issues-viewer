@@ -7,9 +7,15 @@ import grey from '@material-ui/core/colors/grey';
 const common = {
   props: {
     MuiButtonBase: {
-      disableRipple: true, // No more ripple, on the whole application 💣!
+      disableRipple: true, // No more ripple
     },
-  }
+  },
+  typography: {
+    useNextVariants: true,
+    subtitle1: {
+      fontWeight: 500,
+    },
+  },
 };
 
 const Themes = {
@@ -26,9 +32,6 @@ const Themes = {
         contrast: '#242529'
       }
     },
-    typography: {
-      useNextVariants: true,
-    },
   }),
   light: createMuiTheme({
     ...common,
@@ -40,9 +43,6 @@ const Themes = {
       background: {
         contrast: grey[100],
       }
-    },
-    typography: {
-      useNextVariants: true,
     },
   }),
 };

@@ -27,9 +27,6 @@ const styles = theme => ({
       pointerEvents: 'none',
     },
   },
-  title: {
-    fontWeight: 500,
-  },
 });
 
 // skeleton icons
@@ -44,7 +41,7 @@ const IssueListItem = ({ classes, title, number, createdAt, state, author, comme
     <ListItemText
       disableTypography
       primary={
-        <Typography variant="subtitle1" noWrap className={classes.title}>
+        <Typography variant="subtitle1" noWrap>
           <Span>{title}</Span>
         </Typography>
       }

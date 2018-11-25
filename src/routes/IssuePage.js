@@ -13,6 +13,7 @@ import Content from '../components/LayoutContent';
 import IssueHeader from '../components/IssueHeader';
 import IssueComment from '../components/IssueComment';
 import IssueCommentList from '../components/IssueCommentList';
+import MessageError from '../components/MessageError';
 
 const styles = {
   breadcrumb: {
@@ -64,7 +65,7 @@ class Issue extends Component {
           }}
         >
           {({ data, loading, error }) => {
-            if (error) return 'Error';
+            if (error) return <MessageError />;
 
             const { issue = {} } = data.repository || {};
             const { author = {}, comments = {} } = issue;

@@ -31,7 +31,7 @@ const styles = {
   }
 };
 
-class Repo extends Component {
+class RepoPage extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string),
     history: PropTypes.object,
@@ -41,7 +41,7 @@ class Repo extends Component {
 
   handleChangeState = (e, value) => {
     const { history } = this.props;
-    history.push({ search: `?state=${value}` });
+    history.replace({ search: `?state=${value}` });
   }
 
   render() {
@@ -50,36 +50,34 @@ class Repo extends Component {
     const { state = IssueState.OPEN } = queryString.parse(location.search);
 
     return (
-      <Query
-        query={REPO_INFO_QUERY}
-        variables={{ owner, name }}
-      >
-        {({ data: { repository } }) => {
-          return (
-            <>
-              <Header>
-                <RepoHeader repository={repository} />
-              </Header>
-              <Content className={classes.content}>
-                <IssueListFilter
-                  className={classes.filters}
-                  state={state}
-                  onChange={this.handleChangeState}
-                  name={name}
-                  owner={owner}
-                />
-                <IssueList
-                  owner={owner}
-                  name={name}
-                  state={state}
-                />
-              </Content>
-            </>
-          );
-        }}
-      </Query>
+      <>
+        <Query
+          query={REPO_INFO_QUERY}
+          variables={{ owner, name }}
+        >
+          {({ data }) => (
+            <Header>
+              <RepoHeader repository={data.repository} />
+            </Header>
+          )}
+        </Query>
+        <Content className={classes.content}>
+          <IssueListFilter
+            className={classes.filters}
+            state={state}
+            onChange={this.handleChangeState}
+            name={name}
+            owner={owner}
+          />
+          <IssueList
+            owner={owner}
+            name={name}
+            state={state}
+          />
+        </Content>
+      </>
     );
   }
 }
 
-export default withStyles(styles)(Repo);
+export default withStyles(styles)(RepoPage);

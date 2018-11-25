@@ -1,17 +1,20 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import IssueListItem from '../components/IssueListItem';
-import Sheet from './Sheet';
 import Button from '@material-ui/core/Button';
-import IssueComment from '../components/IssueComment';
 import Typography from '@material-ui/core/Typography';
-import TimeAgo from '../components/TimeAgo';
+import ErrorIcon from '@material-ui/icons/ErrorOutlineOutlined';
+import { storiesOf } from '@storybook/react';
+
+import Sheet from './Sheet';
+import Row from './Row';
 import { IssueState } from '../constants';
+import IssueListItem from '../components/IssueListItem';
+import IssueComment from '../components/IssueComment';
+import TimeAgo from '../components/TimeAgo';
 import InputBase from '../components/InputBase';
 import InputSearch from '../components/InputSearch';
 import IssueHeader from '../components/IssueHeader';
-import Row from './Row';
 import RepoListItem from '../components/RepoListItem';
+import Message from '../components/Message';
 
 storiesOf('Components', module)
   .add('Time', () => (
@@ -43,6 +46,23 @@ storiesOf('Components', module)
       <Button variant="contained" color="primary">Load more</Button>
       <Button color="primary">Load more</Button>
     </Sheet>
+  ))
+  .add('Messages', () => (
+    <>
+      <Sheet title="Empty state">
+        <Message
+          title="No messages yet"
+          description="This is where your chats are stored"
+        />
+      </Sheet>
+      <Sheet title="Error state">
+        <Message
+          title="Something went wrong"
+          description="There was a problem loading data. Check your internet and try again."
+          icon={<ErrorIcon color="error" />}
+        />
+      </Sheet>
+    </>
   ))
   .add('Forms', () => (
     <Sheet title="Text fields">

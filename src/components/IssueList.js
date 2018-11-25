@@ -7,16 +7,23 @@ import IssueListItem from './IssueListItem';
 import { IssueState } from '../constants';
 import IssuesLoader from './IssuesLoader';
 import Pagination from './Pagination';
+import Message from './Message';
 
 
-// TODO: add empty state
 const Loading = () => (
-  <>
+  <List>
     <IssueListItem loading />
     <IssueListItem loading />
     <IssueListItem loading />
     <IssueListItem loading />
-  </>
+  </List>
+);
+
+const EmptyState = () => (
+  <Message
+    title="There is no issues here"
+    description="Looks like not everybody has issues after all."
+  />
 );
 
 class IssueList extends Component {
@@ -40,6 +47,9 @@ class IssueList extends Component {
       >
         {({ loading, issues, hasNextPage, onLoadMore }) => {
           if (loading) return <Loading />;
+          else if (!issues.length) {
+            return <EmptyState />;
+          }
           return (
             <div>
               <List>

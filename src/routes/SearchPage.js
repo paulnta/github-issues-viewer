@@ -11,6 +11,8 @@ import List from '@material-ui/core/List';
 
 import Content from '../components/LayoutContent';
 import RepoListItem from '../components/RepoListItem';
+import Message from '../components/Message';
+import MessageError from '../components/MessageError';
 
 const styles = theme => ({
   root: {},
@@ -42,46 +44,57 @@ const SEARCH_REPO = gql`
 
 const DEFAULT_QUERY = 'stars:>1000';
 
-const LoadingState = () => (
-  <>
-    <RepoListItem loading />
-    <RepoListItem loading />
-    <RepoListItem loading />
-    <RepoListItem loading />
-  </>
-);
-
 const Search = ({ classes, children, location }) => {
-  const params = queryString.parse(location.search);
+  const { q } = queryString.parse(location.search);
   return (
     <>
       <Content className={classes.root}>
         <Typography className={classes.title} variant="h6" gutterBottom>
           Search Repositories
         </Typography>
-        <Query query={SEARCH_REPO} variables={{ query: params.q || DEFAULT_QUERY }}>
+        <Query query={SEARCH_REPO} variables={{ query: q || DEFAULT_QUERY }}>
           {({ data, loading, error }) => {
-            if (loading) return <LoadingState />;
-            if (error) return 'error...';
-            const { edges } = data.search;
+            if (loading) {
+              // Loading state
+              return (
+                <List>
+                  <RepoListItem loading />
+                  <RepoListItem loading />
+                  <RepoListItem loading />
+                  <RepoListItem loading />
+                </List>
+              );
+            }
+            else if (error) {
+              // Error state
+              return <MessageError />;
+            }
+            else if (!data.search.edges.length) {
+              // Empty state
+              return (
+                <Message
+                  title="Oops"
+                  description={`We couldn't find results for "${q}"`}
+                />
+              );
+            }
+
             return (
               <List>
-                {
-                  edges.map(({ node: repo }) => {
-                    return (
-                      <Link
-                        key={repo.id}
-                        to={`/${repo.owner.login}/${repo.name}`}
-                      >
-                        <RepoListItem
-                          title={repo.nameWithOwner}
-                          description={repo.description}
-                          starCount={repo.stargazers.totalCount}
-                        />
-                      </Link>
-                    );
-                  })
-                }
+                {data.search.edges.map(({ node: repo }) => {
+                  return (
+                    <Link
+                      key={repo.id}
+                      to={`/${repo.owner.login}/${repo.name}`}
+                    >
+                      <RepoListItem
+                        title={repo.nameWithOwner}
+                        description={repo.description}
+                        starCount={repo.stargazers.totalCount}
+                      />
+                    </Link>
+                  );
+                })}
               </List>
             );
           }}

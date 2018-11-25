@@ -7,7 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import { withSkeletonProvider, placeholder, Span } from './Skeleton';
 
 const styles = theme => ({
-  root: {},
+  subtitle: {
+    fontWeight: theme.typography.fontWeightRegular,
+  }
 });
 
 const RepoHeader = ({ classes, children, repository }) => {
@@ -17,7 +19,7 @@ const RepoHeader = ({ classes, children, repository }) => {
       <Typography variant="h6">
         <Span>{owner.login} / {name}</Span>
       </Typography>
-      <Typography variant="subtitle1" color="textSecondary">
+      <Typography variant="subtitle1" className={classes.subtitle} color="textSecondary">
         <Span>{description}</Span>
       </Typography>
     </div>
