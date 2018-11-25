@@ -26,6 +26,7 @@ const RepoHeader = ({ classes, children, repository }) => {
 
 RepoHeader.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
+  children: PropTypes.node,
   repository: PropTypes.shape({
     owner: PropTypes.shape({
       login: PropTypes.string,

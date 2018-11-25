@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Query } from 'react-apollo';
 import queryString from 'query-string';
@@ -31,6 +32,12 @@ const styles = {
 };
 
 class Repo extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string),
+    history: PropTypes.object,
+    match: PropTypes.object,
+    location: PropTypes.object,
+  }
 
   handleChangeState = (e, value) => {
     const { history } = this.props;

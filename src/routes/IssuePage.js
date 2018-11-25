@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Typography from '@material-ui/core/Typography';
@@ -43,6 +44,11 @@ const ISSUE_QUERY = gql`
 `;
 
 class Issue extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string),
+    match: PropTypes.object,
+  }
+
   render() {
     const { classes, match } = this.props;
     const { owner, name } = match.params;

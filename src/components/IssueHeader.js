@@ -72,12 +72,14 @@ const IssueHeader = ({ classes, className, children, title, author, commentsCoun
 IssueHeader.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   className: PropTypes.string,
+  children: PropTypes.node,
   title: PropTypes.string,
   number: PropTypes.number,
   createdAt: PropTypes.string,
   author: PropTypes.string,
   state: PropTypes.oneOf([IssueState.OPEN, IssueState.CLOSED]),
   commentsCount: PropTypes.number,
+  url: PropTypes.string,
   loading: PropTypes.bool,
 };
 

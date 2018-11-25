@@ -25,6 +25,7 @@ const styles = theme => ({
 const renderers = {
   code: Code,
   inlineCode: CodeInline,
+  // eslint-disable-next-line react/prop-types
   paragraph: ({ children, style }) => (
     <Typography variant="body1">
       <Span>{children}</Span>

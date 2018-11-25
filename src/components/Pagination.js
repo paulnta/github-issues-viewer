@@ -27,6 +27,7 @@ Pagination.propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
   onLoadMore: PropTypes.func,
+  hasNextPage: PropTypes.bool,
 };
 
 export default withStyles(styles)(Pagination);

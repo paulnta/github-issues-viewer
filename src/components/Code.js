@@ -91,6 +91,7 @@ const Code = ({ classes, language, value }) => (
 );
 
 Code.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
   language: PropTypes.string,
   value: PropTypes.string,
 };
