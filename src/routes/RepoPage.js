@@ -17,12 +17,6 @@ query Repo($owner: String!, $name: String!) {
     name
     owner { login }
     description
-    openedIssues: issues(states: OPEN ) {
-      totalCount
-    }
-    closedIssues: issues(states: CLOSED) {
-      totalCount
-    }
   }
 }
 `;
@@ -54,7 +48,6 @@ class Repo extends Component {
         variables={{ owner, name }}
       >
         {({ data: { repository } }) => {
-          const { openedIssues = {}, closedIssues = {} } = repository || {};
           return (
             <>
               <Header>
@@ -64,9 +57,9 @@ class Repo extends Component {
                 <IssueListFilter
                   className={classes.filters}
                   state={state}
-                  openedCount={openedIssues.totalCount}
-                  closedCount={closedIssues.totalCount}
                   onChange={this.handleChangeState}
+                  name={name}
+                  owner={owner}
                 />
                 <IssueList
                   owner={owner}
