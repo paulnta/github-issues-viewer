@@ -11,54 +11,51 @@ import TimeAgo from './TimeAgo';
 import { withSkeletonProvider, Avatar, Span } from './Skeleton';
 
 
-const styles = theme => {
-  const spacing = theme.spacing.unit;
-  return {
-    root: {
-      position: 'relative',
-      paddingLeft: 62,
-      marginBottom: spacing * 3,
-    },
-    avatar: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      marginRight: spacing * 2,
-    },
-    content: {
-      padding: `${spacing}px ${spacing * 3}px ${spacing * 3}px`,
-    },
-    toolbar: {
-      minHeight: 46,
-    },
-    author: {
-      marginRight: theme.spacing.unit / 2,
-    }
-  };
-};
+const styles = theme => ({
+  root: {
+    marginBottom: theme.spacing.unit * 3,
+    background: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+  },
+  content: {
+    padding: theme.spacing.unit * 2,
+    paddingTop: theme.spacing.unit,
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing.unit * 2,
+  },
+  avatar: {
+    marginRight: theme.spacing.unit * 2,
+  },
+  author: {
+    marginRight: theme.spacing.unit / 2,
+  },
+});
 
-const IssueComment = ({ classes, body: bodyProps, author, createdAt }) => {
+const IssueComment = ({ classes, body, author, createdAt }) => {
   const { avatarUrl, login } = author || {};
-  const body = bodyProps || '*No description provided*';
 
   return (
     <div className={classes.root}>
-      <Avatar className={classes.avatar} src={avatarUrl} />
-      <Paper elevation={0}>
-        <Toolbar className={classes.toolbar}>
+      <div className={classes.header}>
+        <Avatar className={classes.avatar} src={avatarUrl} />
+        <div>
           <Typography variant="subtitle2" className={classes.author}>
             <Span>{login}</Span>
           </Typography>
-          {createdAt && (
-            <Typography variant="body2" color="textSecondary">
-              commented <TimeAgo date={createdAt} />
-            </Typography>
-          )}
-        </Toolbar>
-        <div className={classes.content}>
-          <Markdown source={body} />
+
+          <Typography variant="body2" color="textSecondary">
+            <Span>commented <TimeAgo date={createdAt} /></Span>
+          </Typography>
         </div>
-      </Paper>
+      </div>
+
+      <Markdown
+        className={classes.content}
+        source={body || '*No description provided*'}
+      />
     </div>
   );
 };
