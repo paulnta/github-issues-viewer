@@ -22,14 +22,17 @@ query Repo($owner: String!, $name: String!) {
 }
 `;
 
-const styles = {
+const styles = theme => ({
   content: {
     paddingTop: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
   },
   filters: {
-    marginBottom: 16,
+    marginBottom: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 2,
   }
-};
+});
 
 class RepoPage extends Component {
   static propTypes = {

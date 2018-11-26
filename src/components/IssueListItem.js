@@ -15,17 +15,20 @@ import IssueStateIcon from "./IssueStateIcon";
 import { Span, withSkeletonProvider, withSkeleton, placeholder } from "./Skeleton";
 
 const styles = theme => ({
+  root: {
+    '&.loading': {
+      // remove mouse interactions when loading
+      pointerEvents: 'none',
+    },
+  },
   commentIcon: {
     height: 18,
     width: 18,
     color: theme.palette.text.secondary,
     marginRight: theme.spacing.unit / 2,
   },
-  root: {
-    '&.loading': {
-      // remove mouse interactions when loading
-      pointerEvents: 'none',
-    },
+  listItemIcon: {
+    marginRight: 0,
   },
 });
 
@@ -35,7 +38,7 @@ const StateIcon = withSkeleton(IssueStateIcon);
 
 const IssueListItem = ({ classes, title, number, createdAt, state, author, commentCount, loading, ...other }) => (
   <ListItem className={cx(classes.root, { loading })} button {...other}>
-    <ListItemIcon>
+    <ListItemIcon className={classes.listItemIcon}>
       <StateIcon state={state} />
     </ListItemIcon>
     <ListItemText
@@ -52,7 +55,7 @@ const IssueListItem = ({ classes, title, number, createdAt, state, author, comme
       }
     />
     {(loading || commentCount > 0) && (
-      <ListItemIcon>
+      <ListItemIcon className={classes.listItemIcon}>
         <>
           <Comment className={classes.commentIcon} />
           <Typography variant="caption">{commentCount}</Typography>

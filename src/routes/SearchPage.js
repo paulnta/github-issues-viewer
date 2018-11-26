@@ -15,7 +15,10 @@ import Message from '../components/Message';
 import MessageError from '../components/MessageError';
 
 const styles = theme => ({
-  root: {},
+  content: {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
   title: {
     ...theme.mixins.gutters(),
   }
@@ -48,7 +51,7 @@ const Search = ({ classes, children, location }) => {
   const { q } = queryString.parse(location.search);
   return (
     <>
-      <Content className={classes.root}>
+      <Content className={classes.content}>
         <Typography className={classes.title} variant="h6" gutterBottom>
           Search Repositories
         </Typography>

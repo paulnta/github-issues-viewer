@@ -42,7 +42,7 @@ const formatStarCount = (value) => {
   return value > 999 ? Number((value / 1000).toFixed(1)) + 'k' : value;
 };
 
-const BaseListItem = ({ classes, className, title, description, starCount, loading }) => (
+const RepoListItem = ({ classes, className, title, description, starCount, loading }) => (
   <ListItem className={cx(classes.root, className, { loading })} button>
     <ListItemText
       disableTypography
@@ -68,7 +68,7 @@ const BaseListItem = ({ classes, className, title, description, starCount, loadi
   </ListItem>
 );
 
-BaseListItem.propTypes = {
+RepoListItem.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   className: PropTypes.string,
   title: PropTypes.string,
@@ -83,4 +83,4 @@ export default compose(
     description: placeholder(90),
   }),
   withStyles(styles),
-)(BaseListItem);
+)(RepoListItem);
