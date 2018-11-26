@@ -49,9 +49,9 @@ const styles = theme => {
     },
     searchInput: {
       transition: theme.transitions.create('width'),
-      width: 130,
+      width: 110,
       '&:focus': {
-        width: 200,
+        width: 180,
       }
     },
     grow: {
