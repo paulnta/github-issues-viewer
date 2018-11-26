@@ -13,7 +13,6 @@ const styles = theme => ({
     ...theme.typography.body1,
     color: theme.palette.text.primary,
     '& p': {
-      marginBottom: theme.spacing.unit * 2,
       wordWrap: 'break-word',
     },
     '& img': {
@@ -27,10 +26,10 @@ const renderers = {
   code: Code,
   inlineCode: CodeInline,
   // eslint-disable-next-line react/prop-types
-  paragraph: ({ children, style }) => (
-    <Typography variant="body1">
+  paragraph: ({ children }) => (
+    <p>
       <Span>{children}</Span>
-    </Typography>
+    </p>
   ),
 };
 

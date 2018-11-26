@@ -25,6 +25,12 @@ const styles = theme => ({
       fontSize: '1.3rem',
     }
   },
+  meta: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'inline',
+    }
+  },
   issueNumber: {
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit / 2,
@@ -45,13 +51,13 @@ const IssueHeader = ({ classes, className, children, title, author, commentsCoun
   const timeAgo = createdAt && <TimeAgo date={createdAt} />;
   const issueNumber = number && <span className={classes.issueNumber}>#{number}</span>;
   const issueState = state && <IssueStateChip className={classes.statusChip} state={state} />;
+  const meta = <span className={classes.meta}><strong>{author}</strong> opened this issue {timeAgo} ·</span>;
 
   return (
     <div className={cx(classes.root, className)}>
       <Typography className={classes.headline} variant="h5">
-        <Span>{title} {issueNumber}</Span>
+        <Span>{title} {issueNumber} </Span>
       </Typography>
-
 
       <Typography
         variant="body1"
@@ -60,7 +66,7 @@ const IssueHeader = ({ classes, className, children, title, author, commentsCoun
         className={classes.subtitle}
       >
         {issueState}
-        <Span> <strong>{author}</strong> opened this issue {timeAgo} · {commentsCount} comments</Span>
+        <Span>{meta} {commentsCount} comments</Span>
       </Typography>
 
       {url && (
