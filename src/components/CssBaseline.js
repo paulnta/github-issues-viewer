@@ -33,6 +33,25 @@ const styles = theme => {
       strong: {
         fontWeight: 500,
       },
+      p: {
+        marginTop: 0,
+        marginBottom: theme.spacing.unit * 2,
+      },
+      hr: {
+        backgroundColor: theme.palette.divider,
+        border: 0,
+        height: '.25em',
+        margin: `${theme.spacing.unit * 3}px 0`,
+        padding: 0,
+      },
+      blockquote: {
+        color: theme.palette.text.secondary,
+        borderLeft: `.25em solid ${theme.palette.divider}`,
+        paddingLeft: theme.spacing.unit * 2,
+        paddingRight: theme.spacing.unit * 2,
+        margin: 0,
+        marginBottom: theme.spacing.unit * 2,
+      },
       '@keyframes pending-animation': {
         '0%': { opacity: 0.8 },
         '50%': { opacity: 0.4 },
