@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ErrorIcon from '@material-ui/icons/ErrorOutlineOutlined';
 import { storiesOf } from '@storybook/react';
@@ -15,37 +14,36 @@ import InputSearch from '../components/InputSearch';
 import IssueHeader from '../components/IssueHeader';
 import RepoListItem from '../components/RepoListItem';
 import Message from '../components/Message';
+import Code from '../components/Code';
 
 storiesOf('Components', module)
-  .add('Time', () => (
-    <Sheet title="Time">
-      <Row label="2018-11-13T03:46:02Z">
-        <Typography variant="body1">
-          <TimeAgo date="2018-11-13T03:46:02Z" />
-        </Typography>
-      </Row>
-      <Row label="2018-11-10T03:46:02Z">
-        <Typography variant="body1">
-          <TimeAgo date="2018-11-10T03:46:02Z" />
-        </Typography>
-      </Row>
-      <Row label="2018-10-13T03:46:02Z">
-        <Typography variant="body1">
-          <TimeAgo date="2018-10-13T03:46:02Z" />
-        </Typography>
-      </Row>
-      <Row label="2013-05-30T03:46:02Z">
-        <Typography variant="body1">
-          <TimeAgo date="2013-05-30T03:46:02Z" />
-        </Typography>
-      </Row>
-    </Sheet>
-  ))
-  .add('Button', () => (
-    <Sheet title="Button">
-      <Button variant="contained" color="primary">Load more</Button>
-      <Button color="primary">Load more</Button>
-    </Sheet>
+  .add('Code', () => (
+    <>
+      <Sheet title="Javascript">
+        <Code
+          language="Javascript"
+          value={'import React, { useState, useEffect, useReducer } from \"react\";\nimport ReactDOM from \"react-dom\";\n\nimport \"./styles.css\";\n\nfunction reducer(state, action) {\n  console.log(\"bar\", action); // not logged\n  // debugger\n  return state;\n}\n'}
+        />
+      </Sheet>
+      <Sheet title="React JSX">
+        <Code
+          language="jsx"
+          value={'function useCustomHook1() {\r\n  useEffect(() => {\r\n    console.log(\"mounted\");\r\n    return () => {\r\n      console.log(\"unmounted\");\r\n    };\r\n  }, []);\r\n}\r\n\r\nfunction Test3(props) {\r\n  useCustomHook1();\r\n  useEffect(() => {\r\n    console.log(props.test);\r\n  });\r\n\r\n  return <div onClick={() => console.log(props.test)}>{props.items.length}</div>;\r\n}\r\n'}
+        />
+      </Sheet>
+      <Sheet title="HTML">
+        <Code
+          language="html"
+          value={'<!DOCTYPE html>\n<html>\n<body>\n\n<h1>My First Heading</h1>\n<p class="paragraph">My first paragraph.</p>\n\n</body>\n</html>'}
+        />
+      </Sheet>
+      <Sheet title="CSS">
+        <Code
+          language="css"
+          value={'* {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-weight: normal;\n}\n\nbody {\n\tfont: 100%/1.5 Questrial, sans-serif;\n\ttab-size: 4;\n\thyphens: auto;\n}\n\na {\n\tcolor: inherit;\n}\n'}
+        />
+      </Sheet>
+    </>
   ))
   .add('Messages', () => (
     <>
@@ -181,4 +179,28 @@ storiesOf('Components', module)
         <IssueHeader loading />
       </Sheet>
     </>
+  ))
+  .add('Time', () => (
+    <Sheet title="Time">
+      <Row label="2018-11-13T03:46:02Z">
+        <Typography variant="body1">
+          <TimeAgo date="2018-11-13T03:46:02Z" />
+        </Typography>
+      </Row>
+      <Row label="2018-11-10T03:46:02Z">
+        <Typography variant="body1">
+          <TimeAgo date="2018-11-10T03:46:02Z" />
+        </Typography>
+      </Row>
+      <Row label="2018-10-13T03:46:02Z">
+        <Typography variant="body1">
+          <TimeAgo date="2018-10-13T03:46:02Z" />
+        </Typography>
+      </Row>
+      <Row label="2013-05-30T03:46:02Z">
+        <Typography variant="body1">
+          <TimeAgo date="2013-05-30T03:46:02Z" />
+        </Typography>
+      </Row>
+    </Sheet>
   ));
