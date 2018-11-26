@@ -17,33 +17,38 @@ import IssueStateChip from './IssueStateChip';
 const styles = theme => ({
   root: {
     position: 'relative',
-    paddingRight: 48,
+    paddingRight: 36,
   },
-  secondary: {
+  headline: {
+    marginBottom: theme.spacing.unit * 2,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.3rem',
+    }
+  },
+  issueNumber: {
     color: theme.palette.text.secondary,
+    marginLeft: theme.spacing.unit / 2,
   },
   statusChip: {
     marginRight: theme.spacing.unit,
   },
   openButton: {
     position: 'absolute',
-    top: -8,
+    top: 0,
     right: 0,
+    height: 32,
+    width: 32,
   },
 });
 
 const IssueHeader = ({ classes, className, children, title, author, commentsCount, number, createdAt, state, url }) => {
   const timeAgo = createdAt && <TimeAgo date={createdAt} />;
-  const issueNumber = number && <span className={classes.secondary}>#{number}</span>;
+  const issueNumber = number && <span className={classes.issueNumber}>#{number}</span>;
   const issueState = state && <IssueStateChip className={classes.statusChip} state={state} />;
 
   return (
     <div className={cx(classes.root, className)}>
-      <Typography
-        variant="h5"
-        gutterBottom
-        className={classes.headline}
-      >
+      <Typography className={classes.headline} variant="h5">
         <Span>{title} {issueNumber}</Span>
       </Typography>
 

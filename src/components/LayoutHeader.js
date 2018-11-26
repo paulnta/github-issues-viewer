@@ -6,17 +6,23 @@ import Content from './LayoutContent';
 const styles = theme => ({
   root: {
     background: theme.palette.background.contrast,
-    paddingTop: 24,
-    paddingBottom: 32,
     color: theme.palette.getContrastText(
       theme.palette.background.contrast,
-    )
+    ),
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: theme.spacing.unit,
+      paddingBottom: theme.spacing.unit * 2,
+    }
   },
+  content: {
+    padding: `${theme.spacing.unit * 3}px`,
+    paddingTop: theme.spacing.unit * 4,
+  }
 });
 
 const LayoutHeader = ({ classes, children }) => (
   <div className={classes.root}>
-    <Content>
+    <Content className={classes.content}>
       {children}
     </Content>
   </div>
