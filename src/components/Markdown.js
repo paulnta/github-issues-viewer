@@ -14,6 +14,7 @@ const styles = theme => ({
     color: theme.palette.text.primary,
     '& p': {
       marginBottom: theme.spacing.unit * 2,
+      wordWrap: 'break-word',
     },
     '& img': {
       width: '100%',
