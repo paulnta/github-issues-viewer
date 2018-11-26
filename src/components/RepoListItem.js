@@ -28,6 +28,9 @@ const styles = theme => ({
   },
   starCount: {
     lineHeight: '18px',
+  },
+  listItemIcon: {
+    marginRight: 0,
   }
 });
 
@@ -54,7 +57,7 @@ const BaseListItem = ({ classes, className, title, description, starCount, loadi
         </Typography>
       }
     />
-    <ListItemIcon>
+    <ListItemIcon className={classes.listItemIcon}>
       <>
         <StarIcon color="action" className={classes.starIcon} />
         <Typography color="textSecondary" className={classes.starCount}>
