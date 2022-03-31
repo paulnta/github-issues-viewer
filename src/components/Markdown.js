@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
-import Typography from '@material-ui/core/Typography';
 import cx from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { Span } from './Skeleton';

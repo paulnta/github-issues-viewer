@@ -9,7 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import ThemeToggle from './ThemeToggle';
 import InputSearch from './InputSearch';
-import GithubIcon from '../svgIcons/Github';
+import Logo from '../svgIcons/Logo';
 
 const styles = theme => {
   const appBarBackground = theme.palette.background.contrast;
@@ -39,7 +39,7 @@ const styles = theme => {
       padding: '24px 16px 24px',
     },
     logo: {
-      height: 32,
+      height: 28,
       width: 'auto',
       position: 'absolute',
       top: '50%',
@@ -88,7 +88,7 @@ class Layout extends React.Component {
           <Toolbar className={classes.toolbar}>
             <div className={cx(classes.toolbarContent, classes.centered)}>
               <Link to="/">
-                <GithubIcon className={classes.logo} />
+                <Logo className={classes.logo} />
               </Link>
               <div className={classes.grow} />
               <form onSubmit={this.onSubmitSearch}>

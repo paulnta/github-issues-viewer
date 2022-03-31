@@ -4,8 +4,6 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBack from '@material-ui/icons/ArrowBack';
 import { Link } from 'react-router-dom';
 
 import Header from '../components/LayoutHeader';
